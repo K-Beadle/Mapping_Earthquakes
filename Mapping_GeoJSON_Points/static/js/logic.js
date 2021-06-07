@@ -26,15 +26,16 @@ let sanFranAirport =
 
 // Grabbing our GeoJSON data.
 L.geoJSON(sanFranAirport, {
+  // We turn each feature into a marker on the map
   onEachFeature: function(feature, layer) {
     console.log(layer);
-    //return L.marker(latlng)
-    layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3>Airport Name: " + feature.properties.name + "</h3>");
+    // return L.marker(latlng)
+    layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3>Airport Name: " + feature.properties.name+ "</h3>");
   }
 }).addTo(map);
 
 // We create the tile layer that will be the background of our map.
-let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/navigation-night-v1/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     accessToken: API_KEY
@@ -58,6 +59,34 @@ let cityData = cities;
 
 //////////////////////////////////////////////////////// The folowing code/notes are from the module work that are kept for reference ////////////////////////////////////////////////////////
 
+// SKILL DRILL TWO 13.5.2
+// // Grabbing our GeoJSON data.
+// L.geoJSON(sanFranAirport, {
+//   // We turn each feature into a marker on the map
+//   onEachFeature: function(feature, layer) {
+//     console.log(layer);
+//     // return L.marker(latlng)
+//     layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3>Airport Name: " + feature.properties.name+ "</h3>");
+//   }
+// }).addTo(map);
+
+// // We create the tile layer that will be the background of our map.
+// let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+
+
+// SKILL DRILL ONE 13.5.2
+// Grabbing our GeoJSON data.
+// L.geoJSON(sanFranAirport, {
+//   // We turn each feature into a marker on the map
+//   pointToLayer: function(feature, latlng) {
+//     console.log(feature);
+//     return L.marker(latlng)
+//     .bindPopup("<h2>" + feature.properties.name + "</h2> <hr> <h3>" + feature.properties.city + ", " + feature.properties.country + "</h3>");
+//   }
+// }).addTo(map);
+
+// // We create the tile layer that will be the background of our map.
+// let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/navigation-night-v1/tiles/{z}/{x}/{y}?access_token={accessToken}',
 
 
 // Coordinates for each point to be used in the line
