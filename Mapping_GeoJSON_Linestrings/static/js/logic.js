@@ -43,6 +43,8 @@ d3.json(torontoData).then(function(data) {
 
   // Creating the GeoJSON layer with the retrieved data.
   L.geoJson(data, {
+    color: "#fcf119",
+    weight: 2,
     onEachFeature: function(feature, layer) {
           console.log(layer);
 
