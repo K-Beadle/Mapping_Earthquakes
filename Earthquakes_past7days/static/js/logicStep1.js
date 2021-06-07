@@ -26,8 +26,8 @@ let baseMaps = {
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
-  center: [39.5, -98.5],
-  zoom: 11,
+  center: [43.7, -79.3],
+  zoom: 2,
   layers: [satelliteStreets]
 });
 
@@ -35,34 +35,16 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing the Toronto neighborhoods GeoJSON URL
-let torontoHoods = "https://raw.githubusercontent.com/K-Beadle/Mapping_Earthquakes/main/torontoNeighborhoods.json"
-
-// Create a style for the lines.
-let myStyle = {
-  color: "#fcf119",
-  weight: 1,
-  fillcolor: 'yellow'
-}
+let earthquakes = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
 // Grabbing our GeoJSON data.
-d3.json(torontoHoods).then(function(data) {
-  console.log(data);
-
-  // Creating the GeoJSON layer with the retrieved data.
-  L.geoJson(data, {
-    style: myStyle,
-    onEachFeature: function(feature, layer) {
-          console.log(layer);
-
-          // return L.marker(latlng)
-          layer.bindPopup("<h2>Neighborhood: " + feature.properties.AREA_NAME + "</h2>");
-        }
-  }).addTo(map);
+d3.json(earthquakes).then(function(data) {
+  L.geoJson(data).addTo(map);
 });
 
-
 // Then we add our 'graymap' tile layer to the map.
-light.addTo(map);
+streets.addTo(map);
+
 
 
 
